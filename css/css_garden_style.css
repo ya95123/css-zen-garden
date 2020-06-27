@@ -1,0 +1,355 @@
+/* css Zen Garden default style v1.02 */
+/* css released under Creative Commons License - http://creativecommons.org/licenses/by-nc-sa/1.0/  */
+
+/* This file based on 'Tranquille' by Dave Shea */
+/* You may use this file as a foundation for any new work, but you may find it easier to start from scratch. */
+/* Not all elements are defined in this file, so you'll most likely want to refer to the xhtml as well. */
+
+/* Your images should be linked as if the CSS file sits in the same folder as the images. ie. no paths. */
+
+/* basic elements */
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* font-family: 'Dancing Script', cursive; */
+}
+
+html,body{
+  height: 100%;
+}
+
+body{
+  width: 100vw;
+  height: 100vh;
+  background: url(../images/bg.svg);
+  overflow: hidden;
+  transition: 0.5s;
+  /* font-family: 'Dancing Script', cursive; */
+
+  /* 3D */
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+a:hover{
+  color: #ddd !important;
+}
+
+p{
+  font-size: 1.6rem;
+  /* font-weight: 600; */
+}
+
+p:nth-child(odd){
+  color: rgb(26, 94, 241);
+}
+
+p:nth-child(even){
+  color: rgb(255, 59, 24);
+}
+
+abbr{
+  color: rgb(16, 161, 52);
+}
+
+h3{
+  color: #ddd;
+  font-size: 2.2rem;
+}
+
+/* 置中 */
+#zen-summary,#zen-preamble,#zen-explanation,#zen-participation,#zen-benefits,#zen-requirements,#contentinfo,#design-selection,#design-archives,#zen-resources{
+  font-family: 'Dancing Script', cursive;
+  width: 500px;
+  position: absolute;
+  /* z-index: 1; */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  display: none;
+}
+
+/* !火圈 */
+/* TODO 到時候JS 改點擊的時候+180度 */
+.extra1{
+  width: 800px;
+  height: 800px;
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  background: url(../images/ring.svg) no-repeat;
+  transition: 0.6s;
+  animation: color-change infinite 16s;
+  opacity: 0.96;
+}
+
+/* !火圈兩側按鈕-右側 */
+.extra2{
+  width: 70px;
+  height: 70px;
+  left: calc(50% + 400px);
+  top: calc(50%);
+  transform: translate(-50%,-50%);
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  transition: 0.3s;
+  /* background: #ccc; */
+}
+
+.extra2::before{
+  content: '→';
+  display: block;
+  color: rgba(189, 255, 252, 0.8);
+  font-size: 7rem;
+  font-weight: 800;
+  font-family: 'Dancing Script', cursive;
+
+  position: absolute;
+  left: -4px;
+  top: -35px;  
+}
+
+/* !火圈兩側按鈕-左側 */
+.extra3{
+  width: 70px;
+  height: 70px;
+  left: calc(50% - 400px);
+  top: calc(41%);
+  transform: translate(-50%,-50%);
+  position: relative;
+  z-index: 5;
+  opacity: 0;
+  transition: 0.3s;
+  /* background: #ccc; */
+}
+
+.extra3::after{
+  content: '←';
+  display: block;
+  color: rgba(255, 130, 121, 0.8);
+  font-size: 7rem;
+  font-weight: 800;
+  font-family: 'Dancing Script', cursive;
+
+  position: absolute;
+  left: -35px;
+  top: -35px;  
+}
+
+.extra2:hover,.extra3:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+
+/* !花 */
+.extra4{
+  background: url(../images/flower1.svg);
+  width: 450px;
+  height: 450px;
+  position: absolute;
+  right: -5%;
+  top: -12%;
+  transform: rotate(180deg);
+  opacity: 0;
+  transition: 0.7s;
+}
+
+/* !小恐龍 */
+.extra5{
+  background: url(../images/dino_run.gif) no-repeat;
+  background-size: contain;
+  width: 100px;
+  height: 70px;
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  cursor: pointer;
+  display: none;
+  filter: drop-shadow(-3px 3px 0px #124);
+  /* animation: run 25s infinite; */
+}
+
+/* !zen-intro */
+/* 標題 */
+#zen-intro #banner{
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  font-weight: 650;
+  color: white;
+  position: absolute;
+  left: calc(256px / 2);
+  top: calc(256px / 2 - 42px);
+  filter: drop-shadow(3px 3px 3px rgba(255, 82, 59, 0.842));
+  transition: 0.5s;
+}
+
+#zen-intro #banner:hover{
+  filter: drop-shadow(3px 3px 3px rgba(113, 233, 97, 0.842));
+}
+
+/* logo */
+#zen-intro #banner::before{
+  content: '';
+  display: block;
+  width: 256px;
+  height: 256px;
+  position: absolute;
+  left: calc(-256px / 2);
+  top: calc(-256px / 2 + 42px);
+  z-index: -1;
+  background: url(../images/logo-gray.svg);
+}
+
+/* *zen-summary(0)------------------------------------------ */
+#zen-summary{
+  font-size: 1.6rem;
+  display: block;
+}
+
+/* *zen-preamble(1)----------------------------------------- */
+#zen-preamble{
+  width: 500px;
+  /* height: 500px; */
+  /* background: #333; */
+  border-radius: 50%;
+  display: none;
+}
+
+/* !zen-supporting */
+/* TODO *zen-explanation(過長分兩段1,1) (2,3)-------------------------- */
+#zen-explanation{
+  display: none;
+}
+
+/* TODO *zen-participation(過長分兩段2,1) (4,5)------------------------ */
+#zen-participation{
+  display: none;
+}
+
+/* *zen-benefits(6)------------------------------------------ */
+#zen-benefits{
+  display: none;
+}
+
+/* TODO *zen-requirements(過長分兩段1,1,2,1) (7,8,9,10)-------------------------------------- */
+#zen-requirements{
+  display: none;
+}
+
+/* !sidebar */
+/* *design-selection (11)-------------------------------------- */
+#design-selection{
+  display: none;
+}
+
+#design-selection nav{
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+
+#design-selection a:nth-child(odd){
+  color: rgb(255, 59, 24) !important;
+}
+
+#design-selection a:nth-child(even){
+  color: rgb(26, 94, 241) !important;
+}
+
+/* *design-archives (12)-------------------------------------- */
+#design-archives{
+  display: none;
+}
+
+#design-archives ul{
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+}
+
+#design-archives span{
+  color: #ddd;
+}
+
+#design-archives a:last-child{
+  margin-left: 0.3rem;
+  color: rgb(26, 94, 241) !important;
+}
+
+/* *zen-resources (13)-------------------------------------- */
+#zen-resources{
+  display: none;
+}
+
+#zen-resources ul{
+  margin-top: 1rem;
+  font-size: 1.6rem;
+}
+
+#zen-resources li{
+  margin-bottom: 0.5rem;
+}
+
+#zen-resources a{
+  margin-left: 0.3rem;
+  color: rgb(255, 59, 24) !important;
+}
+
+/* *footer----------------------------------------------- */
+#footer{
+  font-family:'Dancing Script', cursive;
+  font-size: 1rem;
+  font-weight: 650;
+  position: absolute;
+  z-index: 1;
+  right: 0.61%;
+  top: 2.252%;
+  display: flex;
+  flex-direction: column;
+}
+
+#footer a{
+  color: rgb(255, 59, 24) !important;
+  margin-top: 0.32rem;
+}
+
+#footer a:hover{
+  border-bottom: 0.04rem solid #423415;
+}
+
+/* *動畫-------------------------------------------------- */
+@keyframes color-change{
+  0%{
+    filter: hue-rotate(0deg);
+  }
+  100%{
+    filter: hue-rotate(360deg);
+  }
+}
+
+@keyframes run{
+  0%{
+    left: -10%;
+  }
+  49%{
+    left: 110%;
+    transform: translateX(-110%);
+  }
+  50%{
+    transform: rotateY(-180deg);
+  }
+  100%{
+    left: -10%;
+    transform: rotateY(-180deg);
+  }
+}
